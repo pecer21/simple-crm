@@ -242,8 +242,13 @@ return [
             'text' => 'search',
         ],
         [
-            'text' => 'client',
-            'url'  => '/client',
+            'text' => 'dashboard',
+            'url'  => '/',
+            'icon' => 'far fa-fw fa-file',
+        ],
+        [
+            'text' => 'clients',
+            'url'  => '/clients',
             'icon' => 'far fa-fw fa-file',
         ],
     ],
