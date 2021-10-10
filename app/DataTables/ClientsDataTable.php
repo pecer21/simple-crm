@@ -21,9 +21,14 @@ class ClientsDataTable extends DataTable
     {
         return datatables()
             ->eloquent($query)
-            ->editColumn('action', function ($model) {
-                return view('components.datatables.buttons', [
-                    'edit_url'  => route('clients.edit', $model),
+            ->editColumn('edit', function ($model) {
+                return view('components.datatables.buttons.edit', [
+                    'edit_url'  => route('clients.edit', $model)
+                ]);
+
+            })
+            ->editColumn('delete', function ($model) {
+                return view('components.datatables.buttons.destroy', [
                     'delete_url'  => route('clients.destroy', $model)
                 ]);
 
@@ -70,7 +75,11 @@ class ClientsDataTable extends DataTable
             Column::make('name'),
             Column::make('vat'),
             Column::make('address'),
-            Column::computed('action')
+            Column::computed('edit')->title('')
+              ->exportable(false)
+              ->printable(false)
+              ->addClass('text-center'),
+            Column::computed('delete')->title('')
               ->exportable(false)
               ->printable(false)
               ->addClass('text-center'),
