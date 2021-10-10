@@ -165,9 +165,6 @@ return [
         /*
          * Package Service Providers...
          */
-        Yajra\DataTables\DataTablesServiceProvider::class,
-        Yajra\DataTables\ButtonsServiceProvider::class,
-        Yajra\DataTables\FractalServiceProvider::class,
 
         /*
          * Application Service Providers...
