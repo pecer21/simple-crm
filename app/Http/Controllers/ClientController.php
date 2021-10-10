@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DataTables\ClientsDataTable;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,9 @@ class ClientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ClientsDataTable $dataTable)
     {
-        $clients = Client::all();
-
-        return view('client.index', compact('clients'));
+        return $dataTable->render('client.index');
     }
 
     /**
