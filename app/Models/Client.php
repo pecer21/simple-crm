@@ -12,6 +12,10 @@ class Client extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $fillable = [
+        'name',
+    ];
+
     /**
      * The "booted" method of the model.
      *
