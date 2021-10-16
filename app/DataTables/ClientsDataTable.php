@@ -19,19 +19,30 @@ class ClientsDataTable extends DataTable
      */
     public function dataTable($query)
     {
+        $user = auth()->user();
+
         return datatables()
             ->eloquent($query)
-            ->editColumn('edit', function ($model) {
-                return view('components.datatables.buttons.edit', [
-                    'edit_url'  => route('clients.edit', $model)
-                ]);
-
+            ->editColumn('edit', function ($model) use ($user) {
+                //if ($user->can('edit', $model)) {
+                    if (!$model->trashed()) {
+                        return view('components.datatables.buttons.edit', [
+                            'url'  => route('clients.edit', $model)
+                        ]);
+                    }
+                //}
             })
-            ->editColumn('delete', function ($model) {
-                return view('components.datatables.buttons.destroy', [
-                    'delete_url'  => route('clients.destroy', $model)
-                ]);
-
+            ->editColumn('delete', function ($model) use ($user) {
+                //if ($user->can('delete', $model)) {
+                    if ($model->trashed()) {
+                        return view('components.datatables.buttons.restore', [
+                            'url'  => route('clients.restore', $model->id)
+                        ]);
+                    }
+                    return view('components.datatables.buttons.destroy', [
+                        'url'  => route('clients.destroy', $model)
+                    ]);
+                //}
             });
     }
 
@@ -43,7 +54,11 @@ class ClientsDataTable extends DataTable
      */
     public function query(Client $model)
     {
-        return $model->newQuery();
+        $query= $model::query();
+        if ($this->request()->has('deleted') && $this->request()->get('deleted') == true) {
+            $query->onlyTrashed();
+        }
+        return $query;
     }
 
     /**
@@ -57,11 +72,9 @@ class ClientsDataTable extends DataTable
                     ->setTableId('clients-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
-                    ->dom('Bfrtip')
+                    ->dom('frtip')
                     ->orderBy(1)
-                    ->buttons(
-                        Button::make('create')->action("window.location = '".route('clients.create')."';")
-                    );
+                ;
     }
 
     /**
@@ -78,10 +91,12 @@ class ClientsDataTable extends DataTable
             Column::computed('edit')->title('')
               ->exportable(false)
               ->printable(false)
+              ->width(10)
               ->addClass('text-center'),
             Column::computed('delete')->title('')
               ->exportable(false)
               ->printable(false)
+              ->width(10)
               ->addClass('text-center'),
         ];
     }
