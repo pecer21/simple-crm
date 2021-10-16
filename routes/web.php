@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\User\ClientController;
-use App\Http\Controllers\User\DashboardController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,4 +24,6 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('/clients/{id}', [ClientController::class, 'restore'])->name('clients.restore');
     Route::resource('/clients', ClientController::class);
+
+    Route::resource('/users', UserController::class);
 });
