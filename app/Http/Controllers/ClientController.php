@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\ClientsDataTable;
+use App\Http\Requests\Client\StoreRequest;
 use App\Http\Requests\Client\UpdateRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class ClientController extends Controller
 {
@@ -26,7 +28,7 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('client.create');
     }
 
     /**
@@ -35,9 +37,11 @@ class ClientController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        Client::create($request->validated());
+
+        return redirect(route('clients.index'));
     }
 
     /**
@@ -85,6 +89,19 @@ class ClientController extends Controller
     public function destroy(Client $client)
     {
         $client->delete();
+        return redirect(route('clients.index'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Client  $client
+     * @return \Illuminate\Http\Response
+     */
+    public function restore(int $id)
+    {
+        $client = Client::onlyTrashed()->findOrFail($id);
+        $client->restore();
         return redirect(route('clients.index'));
     }
 }
