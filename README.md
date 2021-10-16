@@ -7,6 +7,7 @@
 - Run __php artisan migrate --seed__ (it has some seeded data for your testing)
 - Run __php artisan adminlte:install__
 - Run __php artisan vendor:publish --tag=datatables-buttons__
+- Run __php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider"
 - Run __php artisan ui bootstrap --auth__
 - Run __yarn add datatables.net-bs4 datatables.net-buttons-bs4__
 - Run __yarn dev__
