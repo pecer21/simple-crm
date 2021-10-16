@@ -1,1 +1,1 @@
-<a class="btn btn-primary" href="{{ $edit_url }}">{{ __('Edit') }}</a>
+<a class="btn btn-primary" href="{{ $url }}">{{ __('button.edit') }}</a>
