@@ -26,7 +26,7 @@
 
         <div class="form-group">
             <label>{{ __('form.client.vat') }}</label>
-            <input type="vat" class="form-control {{ $errors->has('vat') ? 'is-invalid' : '' }}" value="{{ old('vat', $client->vat) }}" name="vat">
+            <input type="text" class="form-control {{ $errors->has('vat') ? 'is-invalid' : '' }}" value="{{ old('vat', $client->vat) }}" name="vat">
 
             @if ($errors->has('vat'))
                 <span id="vat-error" class="error invalid-feedback">
@@ -37,11 +37,24 @@
 
         <div class="form-group">
             <label>{{ __('form.client.address') }}</label>
-            <input type="address" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" value="{{ old('address', $client->address) }}" name="address">
+            <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" value="{{ old('address', $client->address) }}" name="address">
 
             @if ($errors->has('address'))
                 <span id="address-error" class="error invalid-feedback">
                     {{ $errors->first('address') }}
+                </span>
+            @endif
+        </div>
+
+        <div class="form-group">
+            <label>{{ __('form.client.active') }}</label>
+
+            <input type="hidden" value="0" name="active" />
+            <input type="checkbox" class="form-control {{ $errors->has('active') ? 'is-invalid' : '' }}" name="active" {{ old('active', $client->active) ? 'checked="checked"' : '' }}>
+
+            @if ($errors->has('active'))
+                <span id="active-error" class="error invalid-feedback">
+                    {{ $errors->first('active') }}
                 </span>
             @endif
         </div>
