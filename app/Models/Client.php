@@ -14,6 +14,13 @@ class Client extends Model
 
     protected $fillable = [
         'name',
+        'vat',
+        'address',
+        'active'
+    ];
+
+    protected $casts = [
+        'active' => 'boolean',
     ];
 
     /**
