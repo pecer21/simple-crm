@@ -1,20 +1,19 @@
 @extends('adminlte::page')
 
-@section('title', __('title.client.edit'))
+@section('title', __('title.client.create'))
 
 @section('content_header')
-    <h1>{{ __('title.client.edit') }}</h1>
+    <h1>{{ __('title.client.create') }}</h1>
 @stop
 
 @section('content')
 
-    <form method="POST" action="{{ route('clients.update', $client) }}">
+    <form method="POST" action="{{ route('clients.store') }}">
         {{ csrf_field() }}
-        {{ method_field('PUT') }}
 
         <div class="form-group">
             <label>{{ __('form.client.name') }}</label>
-            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name', $client->name) }}" name="name">
+            <input type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" value="{{ old('name') }}" name="name">
 
             <!-- Error -->
             @if ($errors->has('name'))
@@ -26,7 +25,7 @@
 
         <div class="form-group">
             <label>{{ __('form.client.vat') }}</label>
-            <input type="text" class="form-control {{ $errors->has('vat') ? 'is-invalid' : '' }}" value="{{ old('vat', $client->vat) }}" name="vat">
+            <input type="text" class="form-control {{ $errors->has('vat') ? 'is-invalid' : '' }}" value="{{ old('vat') }}" name="vat">
 
             @if ($errors->has('vat'))
                 <span id="vat-error" class="error invalid-feedback">
@@ -37,7 +36,7 @@
 
         <div class="form-group">
             <label>{{ __('form.client.address') }}</label>
-            <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" value="{{ old('address', $client->address) }}" name="address">
+            <input type="text" class="form-control {{ $errors->has('address') ? 'is-invalid' : '' }}" value="{{ old('address') }}" name="address">
 
             @if ($errors->has('address'))
                 <span id="address-error" class="error invalid-feedback">
