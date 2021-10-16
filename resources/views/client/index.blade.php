@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Client')
+@section('title', __('title.client.list'))
 
 @section('content_header')
-    <h1>Client</h1>
+    <h1>{{ __('title.client.list') }}</h1>
 @stop
 
 @section('content')
