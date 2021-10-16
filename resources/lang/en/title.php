@@ -1,6 +1,8 @@
 <?php
 
 return [
-    'client.edit'                          => 'Edit client',
-    'client.list'                          => 'Client list',
+    'client' => [
+        'edit'  => 'Edit client',
+        'list'  => 'Client list',
+    ]
 ];
