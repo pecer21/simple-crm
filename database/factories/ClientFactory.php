@@ -23,7 +23,7 @@ class ClientFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'vat' => $this->faker->numberBetween(10000, 100000),
+            'vat' => $this->faker->numberBetween(10000000, 999999999),
             'address' => $this->faker->address(),
             'active' => $this->faker->boolean(),
         ];
