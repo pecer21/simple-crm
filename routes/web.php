@@ -20,5 +20,7 @@ Auth::routes();
 
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index']);
+
+    Route::patch('/clients/{id}', [ClientController::class, 'restore'])->name('clients.restore');
     Route::resource('/clients', ClientController::class);
 });
