@@ -27,7 +27,7 @@ class UpdateRequest extends FormRequest
             'name'      => 'required|string|unique:clients,name,' . $this->name . ',name',
             'vat'       => 'required|string|min:8|unique:clients,vat,' . $this->vat . ',vat',
             'address'   => 'required|string',
-            'active'    => 'boolean',
+            'active'    => 'required',
         ];
     }
 }
