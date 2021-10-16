@@ -25,7 +25,6 @@ class ClientFactory extends Factory
             'name' => $this->faker->name(),
             'vat' => $this->faker->numberBetween(10000000, 999999999),
             'address' => $this->faker->address(),
-            'active' => $this->faker->boolean(),
         ];
     }
 }

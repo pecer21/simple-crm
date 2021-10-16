@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use App\Scopes\ActiveScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -16,20 +15,5 @@ class Client extends Model
         'name',
         'vat',
         'address',
-        'active'
     ];
-
-    protected $casts = [
-        'active' => 'boolean',
-    ];
-
-    /**
-     * The "booted" method of the model.
-     *
-     * @return void
-     */
-    protected static function booted()
-    {
-        static::addGlobalScope(new ActiveScope);
-    }
 }

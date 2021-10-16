@@ -24,10 +24,9 @@ class UpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'      => 'required|string|unique:clients,name,' . $this->name . ',name',
-            'vat'       => 'required|string|min:8|unique:clients,vat,' . $this->vat . ',vat',
+            'name'      => 'required|string|unique:clients,name,' . $this->client->id,
+            'vat'       => 'required|string|min:8|max:12|unique:clients,vat,' . $this->client->id,
             'address'   => 'required|string',
-            'active'    => 'required',
         ];
     }
 }

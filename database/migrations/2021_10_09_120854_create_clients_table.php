@@ -18,7 +18,6 @@ class CreateClientsTable extends Migration
             $table->string('name')->unique();
             $table->string('vat', 12)->unique();
             $table->string('address');
-            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });
